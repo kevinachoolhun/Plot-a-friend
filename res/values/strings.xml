@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btnBatteryLevel">Check Battery Level</string>
+	<string name="hello">Hello, Please enter detais of you friend!</string>
+	<string name="app_name">PlotAFriend</string>
+	<string name="no_friends">No Friends Yet!</string>
+	<string name="menu_insert">Add Friend</string>
+	<string name="menu_delete">Delete Friend</string>
+	<string name="name">Name</string>
+	<string name="location">Location</string>
+	<string name="confirm">Confirm</string>
+	<string name="edit_friend">Edit Friend</string>
+    <string name="callWS">Call Web Service</string>
+    <string name="connectivity">Check Connectivity</string>
+    <string name="btnGoogleMapText">Show Maps</string>
+
+</resources>
