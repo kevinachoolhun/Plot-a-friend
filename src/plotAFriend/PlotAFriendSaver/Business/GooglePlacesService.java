@@ -7,9 +7,9 @@ import java.net.URLConnection;
 
 import org.apache.http.util.ByteArrayBuffer;
 
-public class GooglePlacesFinder {
+public class GooglePlacesService {
 
-	public static String CallGooglePlaces() {
+	public static String CallGooglePlaces(double latitude, double longitude) {
 		String str = null;
 		try {
 			URL myURL = new URL(
@@ -32,8 +32,11 @@ public class GooglePlacesFinder {
 
 			/* Convert the Bytes read to a String. */
 			str = new String(baf.toByteArray());
-		} catch (Exception ex) {
-
+		} 
+		catch (Exception ex) {
+			
+			ex.printStackTrace();
+			str = ex.getMessage();
 		}
 		
 		return str;

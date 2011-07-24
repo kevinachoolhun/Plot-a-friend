@@ -1,9 +1,10 @@
 package plotAFriend.PlotAFriendSaver.Model;
 
-public enum PlacesStatus {
+public enum PlacesStatus{
 	OK,
 	ZERO_RESULTS ,
 	OVER_QUERY_LIMIT,
 	REQUEST_DENIED,
-	INVALID_REQUEST
+	INVALID_REQUEST,
+	NONE
 }

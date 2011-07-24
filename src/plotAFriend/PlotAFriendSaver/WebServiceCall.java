@@ -1,8 +1,12 @@
 package plotAFriend.PlotAFriendSaver;
 
 import android.app.Activity;
+import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -10,15 +14,14 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+
 import java.util.List;
 
 import org.apache.http.util.ByteArrayBuffer;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import plotAFriend.PlotAFriendSaver.Business.JSONLocationParser;
-import plotAFriend.PlotAFriendSaver.Model.Location;
-import plotAFriend.PlotAFriendSaver.Model.LocationResult;
+
+
+
 
 public class WebServiceCall extends Activity{
 	Geocoder coder;
@@ -35,7 +38,25 @@ public class WebServiceCall extends Activity{
 		try
 		{
 			
-	
+			// Acquire a reference to the system Location Manager
+			LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+			// Define a listener that responds to location updates
+			LocationListener locationListener = new LocationListener() {
+			    public void onLocationChanged(Location location) {
+			      // Called when a new location is found by the network location provider.
+			     // makeUseOfNewLocation(location);
+			    }
+
+			    public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+			    public void onProviderEnabled(String provider) {}
+
+			    public void onProviderDisabled(String provider) {}
+			  };
+
+			// Register the listener with the Location Manager to receive location updates
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 			
 			coder = new Geocoder(this);
 		
@@ -70,7 +91,7 @@ public class WebServiceCall extends Activity{
 		            str = new String(baf.toByteArray());
 		            
 		            
-		            ArrayList<Location> locationResults= JSONLocationParser.GetLocations(str);
+		           // ArrayList<Location> locationResults= JSONLocationParser.GetLocations(str);
 		            }
 		           
 

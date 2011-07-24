@@ -2,6 +2,7 @@ package plotAFriend.PlotAFriendSaver;
 
 
 import plotAFriend.PlotAFriendSaver.R.string;
+import plotAFriend.PlotAFriendSaver.Business.MapLocation;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -95,7 +96,7 @@ public class PlotAFriendSaver extends ListActivity {
     
     private void displayGoogleMaps() {
 		// TODO Auto-generated method stub
-		Intent i = new Intent(this, FriendMap.class);
+		Intent i = new Intent(this, MapLocation.class);
 		//startActivityForResult(i, 0);
 		startActivity(i);
 	}

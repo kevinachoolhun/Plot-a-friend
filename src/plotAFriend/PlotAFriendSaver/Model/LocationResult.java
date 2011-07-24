@@ -7,7 +7,7 @@ public class LocationResult {
 	
 	String html_attributions;
 	ArrayList<Location> results;
-	String status;
+	PlacesStatus status;
 	
 	public String getHtml_attributions() {
 		return html_attributions;
@@ -15,17 +15,17 @@ public class LocationResult {
 	public void setHtml_attributions(String html_attributions) {
 		this.html_attributions = html_attributions;
 	}
-	public List<Location> getResults() {
+	public ArrayList<Location> getResults() {
 		return results;
 	}
 	public void setResults(ArrayList<Location> results) {
 		this.results = results;
 	}
-	public String getStatus() {
+	public PlacesStatus getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatus(PlacesStatus placesStatus) {
+		this.status = placesStatus;
 	}
 	
 

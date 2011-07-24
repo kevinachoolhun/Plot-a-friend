@@ -3,6 +3,8 @@ package plotAFriend.PlotAFriendSaver;
 import java.io.IOException;
 import java.util.List;
 
+import plotAFriend.PlotAFriendSaver.Business.FriendOverlayItems;
+
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Address;

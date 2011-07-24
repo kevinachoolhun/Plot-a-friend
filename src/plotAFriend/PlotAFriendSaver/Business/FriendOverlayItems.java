@@ -1,4 +1,4 @@
-package plotAFriend.PlotAFriendSaver;
+package plotAFriend.PlotAFriendSaver.Business;
 
 import java.util.ArrayList;
 
