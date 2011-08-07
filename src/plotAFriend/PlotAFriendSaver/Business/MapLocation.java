@@ -89,11 +89,6 @@ public class MapLocation extends MapActivity implements LocationListener{
 	            provider = LocationManager.GPS_PROVIDER ;
 	        } else {
 	            Toast.makeText(this, "GPS not available", 3000).show();
-	            if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-	                provider = LocationManager.NETWORK_PROVIDER;
-	            } else {
-	                Toast.makeText(this, "Provider Not available", 3000).show();
-	            }
 	        }
 	        
 	        if(provider != null) {
