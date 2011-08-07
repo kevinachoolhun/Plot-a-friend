@@ -75,14 +75,13 @@ public class JSONXMLParser {
 
 	}
 
-	public static void ParseGoogleWeatherXML(String XML) {
+	public static WeatherResult ParseGoogleWeatherXML(String XML) {
 
-		if (XML != null || XML != "") {
-			
-			
-			
-
+		WeatherResult weatherResult  = null;
+		
+	
 			try {
+				if (XML != null || XML != "") {
 				//get the factory
 				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
@@ -95,11 +94,10 @@ public class JSONXMLParser {
 				//get the root element
 				Element docEle = dom.getDocumentElement();
 
-				WeatherResult weatherResult = new WeatherResult();
+				weatherResult = new WeatherResult();
 				//get a nodelist of elements
 				
-				
-				
+		
 				NodeList nl = docEle.getElementsByTagName("weather");
 				if(nl != null && nl.getLength() > 0) {
 					
@@ -110,11 +108,9 @@ public class JSONXMLParser {
 					{
 						Element forecast = (Element)forecastInfo.item(0);
 						weatherResult.setCity(getData(forecast, "city"));
-						//weatherResult.setForecastDate((Date) getData(forecastInfo, "2011-07-25"));
-						
-						
-						
-						
+	 				//weatherResult.setForecastDate((Date) getData(forecastInfo, "2011-07-25"));
+
+		
 					}
 					
 					NodeList currentCondition = weather.getElementsByTagName("current_conditions");
@@ -124,12 +120,10 @@ public class JSONXMLParser {
 						weatherResult.setCondition(getData(currentCond, "condition"));
 						//weatherResult.setHumidity(getData(currentCond, "humidity"));
 						//weatherResult.setTemperatureInCelcius(temperatureInCelcius)
-						
-					}
-					
-					
 
-					
+					}
+				
+				}
 				}
 
 			}catch(ParserConfigurationException pce) {
@@ -140,7 +134,7 @@ public class JSONXMLParser {
 				ioe.printStackTrace();
 			}
 			
-		}
+		return weatherResult;
 	}
 	
 	private static String getData(Element element, String nodeName)
