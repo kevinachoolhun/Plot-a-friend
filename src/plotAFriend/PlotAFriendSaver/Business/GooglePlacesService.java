@@ -14,9 +14,8 @@ public class GooglePlacesService {
 		try {
 			URL myURL = new URL(
 					"https://maps.googleapis.com/maps/api/place/search/json?location="
-							+
-							/* lat +","+ lon + */"37.7781157,-122.42592285"
-							+ "&radius=100000&types=restaurant&sensor=false&key=AIzaSyA6K2MKCrqnT0ImUCP4Pq3oWGb7Id7UuUA");
+							+ latitude +","+ longitude /*"37.7781157,-122.42592285"*/
+							+ "&radius=100000&types=restaurant|food|establishment&sensor=false&key=AIzaSyA6K2MKCrqnT0ImUCP4Pq3oWGb7Id7UuUA");
 			URLConnection conn = myURL.openConnection();
 
 			InputStream streamFromWS = conn.getInputStream();

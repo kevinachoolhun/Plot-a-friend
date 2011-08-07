@@ -4,12 +4,19 @@ import java.util.Date;
 
 public class WeatherResult {
 
+	private String city;
 	public Date forecastDate;
 	public String condition;
 	public int temperatureInCelcius;
 	public int humidity;
 	public String windCondition;
 	
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getCity() {
+		return city;
+	}
 	public Date getForecastDate() {
 		return forecastDate;
 	}

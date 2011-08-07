@@ -25,18 +25,19 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
-public class MapLocation extends MapActivity {
+public class MapLocation extends MapActivity implements LocationListener{
 
 	LinearLayout linearLayout;
 	MapView mapView;
 	List<Overlay> mapOverlays;
-	Drawable drawable;
-	FriendOverlayItems friendOverlay;
+	Drawable drawableAndroid;
+	Drawable drawableLocation;
+	AndroidOverlayItems androidOverlay;
+	LocationOverlayItems locationOverlay;
 	Geocoder coder;
 	int maxResults = 0;
 
 	MapController mapController;
-	MyLocationListener locationListener;
 	LocationManager locationManager;
 
 	@Override
@@ -60,52 +61,56 @@ public class MapLocation extends MapActivity {
 
 		mapView = (MapView) findViewById(R.id.mapview);
 		mapView.setBuiltInZoomControls(true);
+	    mapView.setSatellite(false);
 		mapController = mapView.getController();
 
 		mapOverlays = mapView.getOverlays();
-		drawable = this.getResources().getDrawable(R.drawable.androidmarker);
-		friendOverlay = new FriendOverlayItems(drawable);
+		
+		drawableAndroid = this.getResources().getDrawable(R.drawable.androidmarker);
+		androidOverlay = new AndroidOverlayItems(drawableAndroid);
+		
+		drawableLocation = this.getResources().getDrawable(R.drawable.location);
+    	locationOverlay = new LocationOverlayItems(drawableLocation);
+    	
 		coder = new Geocoder(this);
 
 		mapOverlays.clear();
 
 		maxResults = 1;
-
-	}
-
-	public class MyLocationListener implements LocationListener {
-
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-		}
-
-		public void onProviderEnabled(String provider) {
-		}
-
-		public void onProviderDisabled(String provider) {
-		}
-
-		@Override
-		public void onLocationChanged(Location location) {
-
-			DisplayProposedLocations(location);
-		}
-
-	}
-
-	@Override
-	protected void onResume() {
+		
+		mapController.setZoom(11);
+		
 		// Define a listener that responds to location updates
-		locationListener = new MyLocationListener();
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				300000, 0, locationListener);
-		super.onResume();
-	}
+		
+		
+		 String provider = null;
+	        if (locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+	            provider = LocationManager.GPS_PROVIDER ;
+	        } else {
+	            Toast.makeText(this, "GPS not available", 3000).show();
+	            if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+	                provider = LocationManager.NETWORK_PROVIDER;
+	            } else {
+	                Toast.makeText(this, "Provider Not available", 3000).show();
+	            }
+	        }
+	        
+	        if(provider != null) {
+	        	locationManager.requestLocationUpdates(provider, 1000, 100, this);
+	        }
+	        
+	        
+		
+		
+		
 
+	}
+	
 	private void DisplayProposedLocations(Location currentLocation) {
 		try {
 
-			locationManager.removeUpdates(locationListener);
+			
 			
 			if (currentLocation != null) {
 				double currentLatitude = currentLocation.getLatitude();
@@ -135,16 +140,24 @@ public class MapLocation extends MapActivity {
 									proposedLocation.get(i).getName(),
 									proposedLocation.get(i).getVicinity());
 
-							friendOverlay.addOverlay(overlayitem);
+							locationOverlay.addOverlay(overlayitem);
+							
 						}
 
-						mapOverlays.add(friendOverlay);
+						mapOverlays.add(locationOverlay);
 
 						GeoPoint currentPoint = new GeoPoint(
 								(int) (currentLatitude * 1E6),
 								(int) (currentLongitude * 1E6));
+						
+						
+						OverlayItem overlayitem = new OverlayItem(currentPoint, "You are here", "You are here...");
+																	
+						androidOverlay.addOverlay(overlayitem);
+											
+						mapOverlays.add(androidOverlay);
+						
 						mapController.animateTo(currentPoint);
-						mapController.setZoom(16);
 						mapView.invalidate();
 					} 
 					else {
@@ -162,8 +175,27 @@ public class MapLocation extends MapActivity {
 			Toast.makeText(this, "Exception: " + ex.getMessage(), 50).show();
 		}
 		
-		
-
 	}
+
+	
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+	}
+
+	public void onProviderEnabled(String provider) {
+	}
+
+	public void onProviderDisabled(String provider) {
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+
+		DisplayProposedLocations(location);
+		locationManager.removeUpdates(this);
+	}
+
+			
+
+	
 
 }

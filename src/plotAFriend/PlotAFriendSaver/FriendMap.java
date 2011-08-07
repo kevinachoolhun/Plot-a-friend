@@ -3,7 +3,7 @@ package plotAFriend.PlotAFriendSaver;
 import java.io.IOException;
 import java.util.List;
 
-import plotAFriend.PlotAFriendSaver.Business.FriendOverlayItems;
+import plotAFriend.PlotAFriendSaver.Business.AndroidOverlayItems;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -28,7 +28,7 @@ public class FriendMap extends MapActivity
 	MapView mapView;
 	List<Overlay> mapOverlays;
 	Drawable drawable;
-	FriendOverlayItems friendOverlay;
+	AndroidOverlayItems friendOverlay;
 	Geocoder coder;
 	int maxResults = 0;
 	
@@ -52,7 +52,7 @@ public class FriendMap extends MapActivity
 		
 		mapOverlays = mapView.getOverlays();
 		drawable = this.getResources().getDrawable(R.drawable.androidmarker);
-		friendOverlay = new  FriendOverlayItems(drawable);
+		friendOverlay = new  AndroidOverlayItems(drawable);
 		coder = new Geocoder(this);
 		
 		mapOverlays.clear();

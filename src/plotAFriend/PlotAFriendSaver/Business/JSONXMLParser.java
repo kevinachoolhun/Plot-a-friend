@@ -1,6 +1,7 @@
 package plotAFriend.PlotAFriendSaver.Business;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -89,20 +90,43 @@ public class JSONXMLParser {
 				DocumentBuilder db = dbf.newDocumentBuilder();
 
 				//parse using builder to get DOM representation of the XML file
-				Document dom = db.parse("XML");
+				Document dom = db.parse(XML);
 					
 				//get the root element
 				Element docEle = dom.getDocumentElement();
 
-				WeatherResult weather = new WeatherResult();
+				WeatherResult weatherResult = new WeatherResult();
 				//get a nodelist of elements
 				
 				
 				
 				NodeList nl = docEle.getElementsByTagName("weather");
-				if(nl != null && nl.getLength() == 1) {
+				if(nl != null && nl.getLength() > 0) {
 					
+				Element weather = (Element)nl.item(0);
+				NodeList forecastInfo = weather.getElementsByTagName("forecast_information");
 				
+					if (forecastInfo != null && forecastInfo.getLength() > 0)
+					{
+						Element forecast = (Element)forecastInfo.item(0);
+						weatherResult.setCity(getData(forecast, "city"));
+						//weatherResult.setForecastDate((Date) getData(forecastInfo, "2011-07-25"));
+						
+						
+						
+						
+					}
+					
+					NodeList currentCondition = weather.getElementsByTagName("current_conditions");
+					if (currentCondition != null && currentCondition.getLength()>0)
+					{
+						Element currentCond = (Element)currentCondition.item(0);
+						weatherResult.setCondition(getData(currentCond, "condition"));
+						//weatherResult.setHumidity(getData(currentCond, "humidity"));
+						//weatherResult.setTemperatureInCelcius(temperatureInCelcius)
+						
+					}
+					
 					
 
 					
@@ -118,5 +142,21 @@ public class JSONXMLParser {
 			
 		}
 	}
+	
+	private static String getData(Element element, String nodeName)
+	{
+		
+		String data = null;
+		NodeList nl = element.getElementsByTagName(nodeName);
+		if(nl != null && nl.getLength() > 0) {
+			Element el = (Element)nl.item(0);
+			data = el.getAttribute("data");
+		}
+
+		return data;
+	
+	}
+	
+	
 
 }
