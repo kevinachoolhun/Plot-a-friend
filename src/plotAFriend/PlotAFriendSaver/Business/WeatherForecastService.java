@@ -7,7 +7,7 @@ import plotAFriend.PlotAFriendSaver.Model.WeatherResult;
 
 public class WeatherForecastService {
 
-	public Drawable GetWeatherDrawable(String postcode, Context context) {
+	public static Drawable GetWeatherDrawable(String postcode, Context context) {
 		Drawable drawable = null;
 		WeatherResult result = JSONXMLParser
 				.ParseGoogleWeatherXML(GoogleWeatherService

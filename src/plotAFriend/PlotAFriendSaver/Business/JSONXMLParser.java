@@ -1,6 +1,7 @@
 package plotAFriend.PlotAFriendSaver.Business;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
@@ -75,13 +76,13 @@ public class JSONXMLParser {
 
 	}
 
-	public static WeatherResult ParseGoogleWeatherXML(String XML) {
+	public static WeatherResult ParseGoogleWeatherXML(InputStream  XML) {
 
 		WeatherResult weatherResult  = null;
 		
 	
 			try {
-				if (XML != null || XML != "") {
+				if (XML != null) {
 				//get the factory
 				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 

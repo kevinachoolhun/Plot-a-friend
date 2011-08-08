@@ -1,5 +1,6 @@
 package plotAFriend.PlotAFriendSaver.Business;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -25,7 +27,7 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
-public class MapLocation extends MapActivity implements LocationListener{
+public class MapLocation<ref> extends MapActivity implements LocationListener{
 
 	LinearLayout linearLayout;
 	MapView mapView;
@@ -152,6 +154,10 @@ public class MapLocation extends MapActivity implements LocationListener{
 											
 						mapOverlays.add(androidOverlay);
 						
+						
+						/*Below will draw weather markers*/
+						DrawWeatherMarkup();
+						
 						mapController.animateTo(currentPoint);
 						mapView.invalidate();
 					} 
@@ -173,6 +179,46 @@ public class MapLocation extends MapActivity implements LocationListener{
 	}
 
 	
+	private void DrawWeatherMarkup() {
+		// TODO Auto-generated method stub
+		try {
+			
+		String[] postcodes = {"port louis", "rose belle", "curepipe", "tamarin", "goodlands", "quatre bornes", "plaine des roches", "le morne"};
+		
+		for(int i=0; i < postcodes.length ; i++)
+		{
+			Drawable drawable = WeatherForecastService.GetWeatherDrawable(postcodes[i], this);
+			AndroidOverlayItems weatherOverlay = new AndroidOverlayItems(drawable);
+			
+			
+				
+				List<Address> address =  coder.getFromLocationName(postcodes[i], maxResults);
+				if (address != null && address.size() > 0)
+				{
+					double latitude = address.get(0).getLatitude();
+					double longitude = address.get(0).getLongitude();
+					
+					GeoPoint currentPoint = new GeoPoint(
+							(int) (latitude * 1E6),
+							(int) (longitude * 1E6));
+					
+					OverlayItem overlayitem = new OverlayItem(currentPoint, "", "");
+					
+					weatherOverlay.addOverlay(overlayitem);
+					this.mapOverlays.add(weatherOverlay);
+				}
+				
+			
+			
+			
+		}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 	}
 
