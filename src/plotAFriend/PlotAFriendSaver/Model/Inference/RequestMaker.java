@@ -2,7 +2,7 @@ package plotAFriend.PlotAFriendSaver.Model.Inference;
 
 public class RequestMaker {
 
-	public static RequestFactory getRequest() {
+	public static Request getRequest() {
 		Agent agent = new Agent();
 		
 	

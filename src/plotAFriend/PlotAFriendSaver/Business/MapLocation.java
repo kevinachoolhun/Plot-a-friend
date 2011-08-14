@@ -7,9 +7,9 @@ import java.util.List;
 import plotAFriend.PlotAFriendSaver.R;
 import plotAFriend.PlotAFriendSaver.Model.LocationResult;
 import plotAFriend.PlotAFriendSaver.Model.PlacesStatus;
+import plotAFriend.PlotAFriendSaver.Model.Inference.Request;
+import plotAFriend.PlotAFriendSaver.Model.Inference.RequestMaker;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -27,7 +27,7 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
-public class MapLocation<ref> extends MapActivity implements LocationListener{
+public class MapLocation<ref> extends MapActivity implements LocationListener {
 
 	LinearLayout linearLayout;
 	MapView mapView;
@@ -63,58 +63,53 @@ public class MapLocation<ref> extends MapActivity implements LocationListener{
 
 		mapView = (MapView) findViewById(R.id.mapview);
 		mapView.setBuiltInZoomControls(true);
-	    mapView.setSatellite(false);
+		mapView.setSatellite(false);
 		mapController = mapView.getController();
 
 		mapOverlays = mapView.getOverlays();
-		
-		drawableAndroid = this.getResources().getDrawable(R.drawable.androidmarker);
+
+		drawableAndroid = this.getResources().getDrawable(
+				R.drawable.androidmarker);
 		androidOverlay = new AndroidOverlayItems(drawableAndroid);
-		
+
 		drawableLocation = this.getResources().getDrawable(R.drawable.location);
-    	locationOverlay = new LocationOverlayItems(drawableLocation);
-    	
+		locationOverlay = new LocationOverlayItems(drawableLocation);
+
 		coder = new Geocoder(this);
 
 		mapOverlays.clear();
 
 		maxResults = 1;
-		
+
 		mapController.setZoom(11);
-		
+
 		// Define a listener that responds to location updates
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		
-		
-		 String provider = null;
-	        if (locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
-	            provider = LocationManager.GPS_PROVIDER ;
-	        } else {
-	            Toast.makeText(this, "GPS not available", 3000).show();
-	        }
-	        
-	        if(provider != null) {
-	        	locationManager.requestLocationUpdates(provider, 1000, 100, this);
-	        }
-	        
-	        
-		
-		
-		
+
+		String provider = null;
+		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			provider = LocationManager.GPS_PROVIDER;
+		} else {
+			Toast.makeText(this, "GPS not available", 3000).show();
+		}
+
+		if (provider != null) {
+			locationManager.requestLocationUpdates(provider, 1000, 100, this);
+		}
 
 	}
-	
+
 	private void DisplayProposedLocations(Location currentLocation) {
 		try {
 
-			
-			
 			if (currentLocation != null) {
 				double currentLatitude = currentLocation.getLatitude();
 				double currentLongitude = currentLocation.getLongitude();
 
-				LocationResult proposedLocationResult = LocationPlacesFinder
-						.GetPossibleLocations(currentLatitude, currentLongitude);
+				Request request = RequestMaker.getRequest();
+
+				LocationResult proposedLocationResult = request
+						.getPossibleLocations(currentLatitude, currentLongitude);
 
 				if (proposedLocationResult.getStatus() != null
 						&& proposedLocationResult.getStatus() == PlacesStatus.OK) {
@@ -138,7 +133,7 @@ public class MapLocation<ref> extends MapActivity implements LocationListener{
 									proposedLocation.get(i).getVicinity());
 
 							locationOverlay.addOverlay(overlayitem);
-							
+
 						}
 
 						mapOverlays.add(locationOverlay);
@@ -146,22 +141,20 @@ public class MapLocation<ref> extends MapActivity implements LocationListener{
 						GeoPoint currentPoint = new GeoPoint(
 								(int) (currentLatitude * 1E6),
 								(int) (currentLongitude * 1E6));
-						
-						
-						OverlayItem overlayitem = new OverlayItem(currentPoint, "You are here", "You are here...");
-																	
+
+						OverlayItem overlayitem = new OverlayItem(currentPoint,
+								"You are here", "You are here...");
+
 						androidOverlay.addOverlay(overlayitem);
-											
+
 						mapOverlays.add(androidOverlay);
-						
-						
-						/*Below will draw weather markers*/
+
+						/* Below will draw weather markers */
 						DrawWeatherMarkup();
-						
+
 						mapController.animateTo(currentPoint);
 						mapView.invalidate();
-					} 
-					else {
+					} else {
 						Toast.makeText(
 								this,
 								"No results available right now. Please try later.",
@@ -175,48 +168,45 @@ public class MapLocation<ref> extends MapActivity implements LocationListener{
 			ex.printStackTrace();
 			Toast.makeText(this, "Exception: " + ex.getMessage(), 50).show();
 		}
-		
+
 	}
 
-	
 	private void DrawWeatherMarkup() {
 		// TODO Auto-generated method stub
 		try {
-			
-		String[] postcodes = {"port louis", "rose belle", "curepipe", "tamarin", "goodlands", "quatre bornes", "plaine des roches", "le morne"};
-		
-		for(int i=0; i < postcodes.length ; i++)
-		{
-			Drawable drawable = WeatherForecastService.GetWeatherDrawable(postcodes[i], this);
-			AndroidOverlayItems weatherOverlay = new AndroidOverlayItems(drawable);
-			
-			
-				
-				List<Address> address =  coder.getFromLocationName(postcodes[i], maxResults);
-				if (address != null && address.size() > 0)
-				{
+
+			String[] postcodes = { "port louis", "rose belle", "curepipe",
+					"tamarin", "goodlands", "quatre bornes",
+					"plaine des roches", "le morne" };
+
+			for (int i = 0; i < postcodes.length; i++) {
+				Drawable drawable = WeatherForecastService.GetWeatherDrawable(
+						postcodes[i], this);
+				AndroidOverlayItems weatherOverlay = new AndroidOverlayItems(
+						drawable);
+
+				List<Address> address = coder.getFromLocationName(postcodes[i],
+						maxResults);
+				if (address != null && address.size() > 0) {
 					double latitude = address.get(0).getLatitude();
 					double longitude = address.get(0).getLongitude();
-					
+
 					GeoPoint currentPoint = new GeoPoint(
-							(int) (latitude * 1E6),
-							(int) (longitude * 1E6));
-					
-					OverlayItem overlayitem = new OverlayItem(currentPoint, "", "");
-					
+							(int) (latitude * 1E6), (int) (longitude * 1E6));
+
+					OverlayItem overlayitem = new OverlayItem(currentPoint, "",
+							"");
+
 					weatherOverlay.addOverlay(overlayitem);
 					this.mapOverlays.add(weatherOverlay);
 				}
-				
-			
-			
-			
-		}
+
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -234,9 +224,5 @@ public class MapLocation<ref> extends MapActivity implements LocationListener{
 		DisplayProposedLocations(location);
 		locationManager.removeUpdates(this);
 	}
-
-			
-
-	
 
 }

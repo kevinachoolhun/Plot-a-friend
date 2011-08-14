@@ -4,12 +4,16 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import plotAFriend.PlotAFriendSaver.R;
 import plotAFriend.PlotAFriendSaver.Model.WeatherResult;
+import plotAFriend.PlotAFriendSaver.Model.Inference.Request;
+import plotAFriend.PlotAFriendSaver.Model.Inference.RequestMaker;
 
 public class WeatherForecastService {
 
 	public static Drawable GetWeatherDrawable(String postcode, Context context) {
 		Drawable drawable = null;
-		WeatherResult result = getWeatherResult(postcode);
+		
+		Request request = RequestMaker.getRequest();
+		WeatherResult result =  request.getWeatherResult(postcode);
 
 		if (result != null) {
 			if (result.condition != null) {
