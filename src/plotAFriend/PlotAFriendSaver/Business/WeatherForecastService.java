@@ -9,9 +9,7 @@ public class WeatherForecastService {
 
 	public static Drawable GetWeatherDrawable(String postcode, Context context) {
 		Drawable drawable = null;
-		WeatherResult result = JSONXMLParser
-				.ParseGoogleWeatherXML(GoogleWeatherService
-						.CallGoogleWeather(postcode));
+		WeatherResult result = getWeatherResult(postcode);
 
 		if (result != null) {
 			if (result.condition != null) {
@@ -85,5 +83,15 @@ public class WeatherForecastService {
 		return drawable;
 
 	}
+	
+	public static WeatherResult getWeatherResult(String postcode)
+	{
+		WeatherResult result = JSONXMLParser
+		.ParseGoogleWeatherXML(GoogleWeatherService
+				.CallGoogleWeather(postcode));
+		
+		return result;
+	}
+	
 
 }
