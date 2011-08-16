@@ -21,6 +21,7 @@
 		<activity android:name= ".Business.MapLocation"></activity>
 		<activity android:name= ".Business.GPSLocation"></activity>
 		
+		
     </application>
     <uses-sdk android:minSdkVersion="7" />
 

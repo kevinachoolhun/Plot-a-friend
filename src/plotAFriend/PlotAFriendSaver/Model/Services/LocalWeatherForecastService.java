@@ -13,7 +13,7 @@ public class LocalWeatherForecastService implements WeatherForecastService {
 	public static Drawable GetWeatherDrawable(String postcode, Context context) {
 		Drawable drawable = null;
 		
-		RequestFactory request = RequestMaker.getRequest("weather");
+		RequestFactory request = RequestMaker.getRequest(context, "weather");
 		WeatherForecastService service =  request.getWeatherService();
 		WeatherResult result = service.getWeatherResult(postcode);
 

@@ -108,7 +108,7 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 				double currentLatitude = currentLocation.getLatitude();
 				double currentLongitude = currentLocation.getLongitude();
 
-				RequestFactory request = RequestMaker.getRequest("Location");
+				RequestFactory request = RequestMaker.getRequest(this, "Location");
 
 				PlacesFinderService service = request.getPlacesFinderService();
 				LocationResult proposedLocationResult  = service.getPossibleLocations(currentLatitude, currentLongitude);

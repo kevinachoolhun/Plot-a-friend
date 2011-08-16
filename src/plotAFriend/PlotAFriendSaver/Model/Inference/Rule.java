@@ -1,10 +1,17 @@
 package plotAFriend.PlotAFriendSaver.Model.Inference;
 
-public class Service {
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
+@Root
+public class Rule {
+	@Element
 	private String name;
 
+	@Element
 	private String connection;
 
+	@Element
 	private String battery;
 
 	public void setName(String name) {
@@ -19,16 +26,16 @@ public class Service {
 		this.connection = connection;
 	}
 
-	public String getConnection() {
-		return connection;
+	public Double getConnection() {
+		return Double.valueOf(connection);
 	}
 
 	public void setBattery(String battery) {
 		this.battery = battery;
 	}
 
-	public String getBattery() {
-		return battery;
+	public Double getBattery() {
+		return Double.valueOf(battery);
 	}
 
 }
