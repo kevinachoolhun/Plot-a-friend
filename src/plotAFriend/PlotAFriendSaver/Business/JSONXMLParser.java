@@ -2,7 +2,6 @@ package plotAFriend.PlotAFriendSaver.Business;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,10 +15,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import plotAFriend.PlotAFriendSaver.Model.Location;
-import plotAFriend.PlotAFriendSaver.Model.LocationResult;
-import plotAFriend.PlotAFriendSaver.Model.WeatherResult;
 import plotAFriend.PlotAFriendSaver.Business.Utilities.Utilities;
+import plotAFriend.PlotAFriendSaver.Model.Location;
+import plotAFriend.PlotAFriendSaver.Model.Services.LocationResult;
+import plotAFriend.PlotAFriendSaver.Model.Services.WeatherResult;
 
 public class JSONXMLParser {
 

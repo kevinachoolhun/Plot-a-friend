@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import plotAFriend.PlotAFriendSaver.R;
-import plotAFriend.PlotAFriendSaver.Model.LocationResult;
 import plotAFriend.PlotAFriendSaver.Model.PlacesStatus;
-import plotAFriend.PlotAFriendSaver.Model.Inference.Request;
+import plotAFriend.PlotAFriendSaver.Model.Inference.RequestFactory;
 import plotAFriend.PlotAFriendSaver.Model.Inference.RequestMaker;
+import plotAFriend.PlotAFriendSaver.Model.Services.LocalWeatherForecastService;
+import plotAFriend.PlotAFriendSaver.Model.Services.LocationResult;
+import plotAFriend.PlotAFriendSaver.Model.Services.PlacesFinderService;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -106,10 +108,10 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 				double currentLatitude = currentLocation.getLatitude();
 				double currentLongitude = currentLocation.getLongitude();
 
-				Request request = RequestMaker.getRequest();
+				RequestFactory request = RequestMaker.getRequest("Location");
 
-				LocationResult proposedLocationResult = request
-						.getPossibleLocations(currentLatitude, currentLongitude);
+				PlacesFinderService service = request.getPlacesFinderService();
+				LocationResult proposedLocationResult  = service.getPossibleLocations(currentLatitude, currentLongitude);
 
 				if (proposedLocationResult.getStatus() != null
 						&& proposedLocationResult.getStatus() == PlacesStatus.OK) {
@@ -180,7 +182,7 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 					"plaine des roches", "le morne" };
 
 			for (int i = 0; i < postcodes.length; i++) {
-				Drawable drawable = WeatherForecastService.GetWeatherDrawable(
+				Drawable drawable = LocalWeatherForecastService.GetWeatherDrawable(
 						postcodes[i], this);
 				AndroidOverlayItems weatherOverlay = new AndroidOverlayItems(
 						drawable);

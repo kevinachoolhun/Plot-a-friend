@@ -2,14 +2,14 @@ package plotAFriend.PlotAFriendSaver.Model.Inference;
 
 public class RequestMaker {
 
-	public static Request getRequest() {
-		Agent agent = new Agent();
+	public static RequestFactory getRequest(String service) {
+		Agent agent = new Agent(service);
 		
 	
 		if (agent.useLocal()) {
-			return new LocalRequest();
+			return new LocalRequestFactory();
 		} else {
-			return new WSRequest();
+			return new WSRequestFactory();
 		}
 	}
 

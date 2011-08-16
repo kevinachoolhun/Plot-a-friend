@@ -4,13 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 import plotAFriend.PlotAFriendSaver.Business.AndroidOverlayItems;
-
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.text.style.ForegroundColorSpan;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 

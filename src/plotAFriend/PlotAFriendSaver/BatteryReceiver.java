@@ -1,7 +1,5 @@
 package plotAFriend.PlotAFriendSaver;
 
-import android.app.Service;
-import android.content.BroadcastReceiver;
 
 //public class BatteryReceiver extends Service
 //{
