@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rule>
-	<service>weather</service>
-	<connection>70</connection>
-	<battery>20</battery>
-</rule>
-<rule>
-	<service>location</service>
-	<connection>50</connection>
-	<battery>10</battery>
-</rule>
+<rules>
+	<rule>
+		<service>weather</service>
+		<connection>70</connection>
+		<battery>20</battery>
+	</rule>
+	<rule>
+		<service>location</service>
+		<connection>50</connection>
+		<battery>10</battery>
+	</rule>
+</rules>

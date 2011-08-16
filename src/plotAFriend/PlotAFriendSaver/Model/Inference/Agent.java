@@ -1,16 +1,10 @@
 package plotAFriend.PlotAFriendSaver.Model.Inference;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 
-import android.R;
-import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 
 public class Agent {
 

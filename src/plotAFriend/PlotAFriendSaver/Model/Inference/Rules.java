@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-@Root
+@Root(name="rules")
 public class Rules {
 
-	@ElementList
+	@ElementList(inline=true)
 	private ArrayList<Rule> rule;
 
 	public void setRules(ArrayList<Rule> rule) {
@@ -22,7 +22,7 @@ public class Rules {
 	public Rule getServiceRule(String serviceName) {
 		
 		for (Rule rule : this.rule) {
-			if (rule.getName() == serviceName) {
+			if (rule.getService() == serviceName) {
 				return rule;
 			}
 		}

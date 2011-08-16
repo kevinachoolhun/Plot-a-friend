@@ -2,24 +2,23 @@ package plotAFriend.PlotAFriendSaver.Model.Inference;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
-@Root
+@Root(name="rule")
 public class Rule {
-	@Element
-	private String name;
+	@Element(required=false)
+	private String service;
 
-	@Element
+	@Element(required=false)
 	private String connection;
 
-	@Element
+	@Element(required=false)
 	private String battery;
 
-	public void setName(String name) {
-		this.name = name;
+	public void setService(String service) {
+		this.service = service;
 	}
 
-	public String getName() {
-		return name;
+	public String getService() {
+		return service;
 	}
 
 	public void setConnection(String connection) {
