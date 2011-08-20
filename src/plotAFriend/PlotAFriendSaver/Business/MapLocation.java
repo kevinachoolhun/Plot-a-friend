@@ -168,7 +168,7 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			Toast.makeText(this, "Exception: " + ex.getMessage(), 50).show();
+			Toast.makeText(this, "Exception: " + ex.getMessage(), 5000).show();
 		}
 
 	}
@@ -178,8 +178,8 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 		try {
 
 			String[] postcodes = { "port louis", "rose belle", "curepipe",
-					"tamarin", "goodlands", "quatre bornes",
-					"plaine des roches", "le morne" };
+					"tamarin", "quatre bornes",
+					"le morne" };
 
 			for (int i = 0; i < postcodes.length; i++) {
 				Drawable drawable = LocalWeatherForecastService.GetWeatherDrawable(

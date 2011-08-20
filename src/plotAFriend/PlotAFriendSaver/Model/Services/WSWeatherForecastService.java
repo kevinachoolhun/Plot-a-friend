@@ -12,7 +12,7 @@ public class WSWeatherForecastService implements WeatherForecastService {
 		WeatherResult result = null;
 
 		String response = Utilities
-				.getStringResponse("http://suggest-webservice/weather?loc="
+				.getStringResponse("http://suggest-webservice.appspot.com/weather?loc="
 						+ postcode);
 
 		try {

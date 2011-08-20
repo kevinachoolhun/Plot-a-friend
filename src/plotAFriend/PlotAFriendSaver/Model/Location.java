@@ -3,14 +3,23 @@ package plotAFriend.PlotAFriendSaver.Model;
 
 import java.util.List;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+@Root(name="results")
 public class Location {
-	
+	@Element(required=false)
 	String id;
+	@Element(required=false)
 	String name;
+	@Element(required=false)
 	String vicinity;
+	@Element(required=false)
 	double latitude;
+	@Element(required=false)
 	double longitude;
+	@Element(required=false)
 	String reference;
+	@Element(required=false)
 	List<Type> types;
 	
 	public String getVicinity() {

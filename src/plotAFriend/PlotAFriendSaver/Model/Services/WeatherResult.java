@@ -2,13 +2,21 @@ package plotAFriend.PlotAFriendSaver.Model.Services;
 
 import java.util.Date;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+@Root
 public class WeatherResult{
-
+@Element(required = false)
 	private String city;
+@Element(required = false)
 	public Date forecastDate;
+@Element(required = false)
 	public String condition;
+@Element(required = false)
 	public int temperatureInCelcius;
+@Element(required = false)
 	public int humidity;
+@Element(required = false)
 	public String windCondition;
 	
 	public void setCity(String city) {

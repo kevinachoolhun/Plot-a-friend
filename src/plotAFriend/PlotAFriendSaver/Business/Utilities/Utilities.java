@@ -71,7 +71,7 @@ public class Utilities {
 
 		String response = new String();
 		try {
-			URL url = new URL(address);
+			URL url = new URL(address.replace(" ", "%20"));;
 			Object stream = url.getContent();
 			InputStream bais = (InputStream) stream;
 			response = Utilities.convertStreamToString(bais);

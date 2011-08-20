@@ -2,13 +2,23 @@ package plotAFriend.PlotAFriendSaver.Model.Services;
 
 import java.util.ArrayList;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import plotAFriend.PlotAFriendSaver.Model.Location;
 import plotAFriend.PlotAFriendSaver.Model.PlacesStatus;
 
+@Root(name="locationResult")
 public class LocationResult {
 	
+	@Element(required=false)
 	String html_attributions;
+	
+	@ElementList(inline=true, required=false)
 	ArrayList<Location> results;
+	
+	@Element(required=false)
 	PlacesStatus status;
 	
 	public String getHtml_attributions() {

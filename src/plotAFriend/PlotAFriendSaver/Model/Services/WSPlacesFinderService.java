@@ -12,7 +12,7 @@ public class WSPlacesFinderService implements PlacesFinderService {
 		LocationResult result = null;
 
 		String response = Utilities
-				.getStringResponse("http://suggest-webservice/location?lat="
+				.getStringResponse("http://suggest-webservice.appspot.com/location?lat="
 						+ latitude.toString() + "&lng=" + longitude.toString());
 
 		try {

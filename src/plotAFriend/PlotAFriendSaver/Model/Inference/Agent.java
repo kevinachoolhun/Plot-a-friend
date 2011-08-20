@@ -42,18 +42,18 @@ public class Agent {
 	public Agent(Context c, String serviceName) {
 		
 		// get xml for this service
-		Rule rule = this.getRule(c, serviceName);
+		//Rule rule = this.getRule(c, serviceName);
 		
 		// depending on the context of the device
 
 		// compare context with rules for the passed service
-		if (rule.getBattery() > this.getBattery(c)) {
-			useLocal &= true;
-		}
+		//if (rule.getBattery() > this.getBattery(c)) {
+			useLocal = false;
+		//}
 		
-		if (rule.getConnection() > this.getConnectivity(c)) {
+		/*if (rule.getConnection() > this.getConnectivity(c)) {
 			useLocal &= true;
-		}
+		}*/
 	}
 
 	public Boolean useLocal() {
