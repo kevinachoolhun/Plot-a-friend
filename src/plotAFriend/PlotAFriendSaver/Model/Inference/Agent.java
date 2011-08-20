@@ -1,51 +1,62 @@
 package plotAFriend.PlotAFriendSaver.Model.Inference;
 
-import java.io.File;
-
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
-import android.R;
-import android.app.Activity;
-import android.os.Bundle;
 
-public class Agent extends Activity {
+import android.content.Context;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
+public class Agent {
 
-	public Agent(String serviceName) {
-		Service service = null;
-
-		File xmlFile = new File("file:///service.xml");
+	private Boolean useLocal;
+	
+	private Rules getAllRules(Context c) {
+		Rules rules = null;
 
 		try {
-
 			Serializer serializer = new Persister();
-
-			service = serializer.read(Service.class, xmlFile, false);
+			rules = serializer.read(Rules.class, c.getAssets().open("rules.xml"), false);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return rules;
+	}
+	
+	private Rule getRule(Context c, String serviceName) {
+		Rules rules = this.getAllRules(c);
+		Rule rule = rules.getServiceRule(serviceName);
+		return rule;
+	}
+	
+	private Double getBattery(Context c) {
+		return Double.valueOf("20");
+	}
+	
+	private Double getConnectivity(Context c) {
+		return Double.valueOf("10");
+	}
+	
+	public Agent(Context c, String serviceName) {
+		
+		// get xml for this service
+		Rule rule = this.getRule(c, serviceName);
+		
+		// depending on the context of the device
 
+		// compare context with rules for the passed service
+		if (rule.getBattery() > this.getBattery(c)) {
+			useLocal &= true;
+		}
+		
+		if (rule.getConnection() > this.getConnectivity(c)) {
+			useLocal &= true;
+		}
 	}
 
 	public Boolean useLocal() {
-		// depending on the context of the device
-
-		// get xml for this service
-
-		// compare context with xml
-
-		// cast xml to service of type weather
-		Service service = new Service();
-
-		// service.getBattery() > device.getbattery();
-
-		return false;
+		return useLocal;
 	}
 }

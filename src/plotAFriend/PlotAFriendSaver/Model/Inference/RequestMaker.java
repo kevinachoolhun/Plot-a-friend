@@ -1,9 +1,12 @@
 package plotAFriend.PlotAFriendSaver.Model.Inference;
 
+import android.content.Context;
+
+
 public class RequestMaker {
 
-	public static RequestFactory getRequest(String service) {
-		Agent agent = new Agent(service);
+	public static RequestFactory getRequest(Context c, String service) {
+		Agent agent = new Agent(c, service);
 		
 	
 		if (agent.useLocal()) {
