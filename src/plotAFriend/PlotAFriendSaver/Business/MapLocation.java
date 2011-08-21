@@ -8,6 +8,7 @@ import plotAFriend.PlotAFriendSaver.R;
 import plotAFriend.PlotAFriendSaver.Model.PlacesStatus;
 import plotAFriend.PlotAFriendSaver.Model.Inference.RequestFactory;
 import plotAFriend.PlotAFriendSaver.Model.Inference.RequestMaker;
+import plotAFriend.PlotAFriendSaver.Model.Logging.SuggestLogger;
 import plotAFriend.PlotAFriendSaver.Model.Services.LocalWeatherForecastService;
 import plotAFriend.PlotAFriendSaver.Model.Services.LocationResult;
 import plotAFriend.PlotAFriendSaver.Model.Services.PlacesFinderService;
@@ -29,8 +30,9 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
-public class MapLocation<ref> extends MapActivity implements LocationListener {
+public class MapLocation extends MapActivity implements LocationListener {
 
+	
 	LinearLayout linearLayout;
 	MapView mapView;
 	List<Overlay> mapOverlays;
@@ -61,6 +63,7 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 		// TODO Auto-generated method stub
 		super.onCreate(icicle);
 
+		SuggestLogger.getLogger().l("*********SUGGEST APPLICATION STARTS********", this);
 		setContentView(R.layout.friend_map);
 
 		mapView = (MapView) findViewById(R.id.mapview);
@@ -170,6 +173,8 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 			ex.printStackTrace();
 			Toast.makeText(this, "Exception: " + ex.getMessage(), 5000).show();
 		}
+		
+		SuggestLogger.getLogger().l("*********SUGGEST APPLICATION ENDS********", this);
 
 	}
 
@@ -223,6 +228,7 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 	@Override
 	public void onLocationChanged(Location location) {
 
+		Toast.makeText(this, "Lat: "+ location.getLatitude() + "Long: " + location.getLongitude(), 1000);
 		DisplayProposedLocations(location);
 		locationManager.removeUpdates(this);
 	}
