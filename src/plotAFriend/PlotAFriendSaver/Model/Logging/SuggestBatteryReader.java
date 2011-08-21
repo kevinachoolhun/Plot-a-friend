@@ -31,10 +31,18 @@ private static SuggestBatteryReader instance = null;
 	}
 	
 	
-	public int getBatteryLevel(Context c)
+	public double getBatteryLevel(Context c)
 	{
-		c.registerReceiver(this.myBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-		return batterylevel;
+		//c.registerReceiver(this.myBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+		Intent batteryIntent =  c.getApplicationContext().registerReceiver(null,
+                new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+		int rawlevel = batteryIntent.getIntExtra("level", -1);
+		double scale = batteryIntent.getIntExtra("scale", -1);
+		double level = -1;
+		if (rawlevel >= 0 && scale > 0) {
+		    level = rawlevel / scale;
+		}
+		return rawlevel;
 	
 	}
 	

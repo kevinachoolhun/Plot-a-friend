@@ -96,7 +96,7 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 		}
 
 		if (provider != null) {
-			locationManager.requestLocationUpdates(provider, 1000, 100, this);
+			locationManager.requestLocationUpdates(provider, 0, 0, this);
 		}
 
 	}

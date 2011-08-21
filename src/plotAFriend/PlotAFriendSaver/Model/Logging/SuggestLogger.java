@@ -18,7 +18,7 @@ public class SuggestLogger {
 		return instance;
 	}
 
-	private int getBattery(Context c) {
+	private double getBattery(Context c) {
 		return SuggestBatteryReader.getInstance().getBatteryLevel(c);
 	}
 	
