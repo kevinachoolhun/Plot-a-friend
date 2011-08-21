@@ -49,51 +49,38 @@ public class SuggestLogger {
 		FileWriter writer = null;
 		try {
 			String state = Environment.getExternalStorageState();
-			if (!state.equals(Environment.MEDIA_MOUNTED))
-			{
+			if (!state.equals(Environment.MEDIA_MOUNTED)) {
 				Toast.makeText(c, "CANNOT WRITE TO SDCARD", 5000);
-				
-			}
-			else
-			{
-			
-			File directoryPath = new File(
-					Environment.getExternalStorageDirectory(), "/Android/data/plotAFriend.PlotAFriendSaver/files/");
-			
-			
-			if (!directoryPath.exists()) {
-				directoryPath.mkdirs();
-			}
 
-			File logFile = new File(directoryPath, "logfile.txt");
-			
-			if (!logFile.exists()) {
-				logFile.createNewFile();
+			} else {
+
+				File directoryPath = new File(
+						Environment.getExternalStorageDirectory(),
+						"/Android/data/plotAFriend.PlotAFriendSaver/files/");
+
+				if (!directoryPath.exists()) {
+					directoryPath.mkdirs();
+				}
+
+				File logFile = new File(directoryPath, "logfile.txt");
+
+				if (!logFile.exists()) {
+					logFile.createNewFile();
+				}
+
+				writer = new FileWriter(logFile, true);
+
+				if (writer != null) {
+					writer.append(message);
+				}
+				// writer.flush();
+				writer.close();
+
 			}
-			
-			writer = new FileWriter(logFile);
-			
-			if (writer != null) {
-				writer.append("message");
-			}
-			writer.flush();
-			writer.close();
-		
-		} 
-		}
-		catch (IOException e) 
-		{
+		} catch (IOException e) {
 			Toast.makeText(c, "FILE NOT WRITTEN!! ", 5000);
 		}
 
-		
 	}
 
 }
-	
-
-
-
-	
-
-
