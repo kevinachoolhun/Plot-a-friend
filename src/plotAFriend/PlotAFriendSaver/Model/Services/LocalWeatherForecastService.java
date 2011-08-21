@@ -18,7 +18,7 @@ public class LocalWeatherForecastService implements WeatherForecastService {
 		
 		RequestFactory request = RequestMaker.getRequest(context, "weather");
 		WeatherForecastService service =  request.getWeatherService();
-		WeatherResult result = service.getWeatherResult(postcode, null);
+		WeatherResult result = service.getWeatherResult(postcode, context);
 
 		if (result != null) {
 			if (result.condition != null) {
