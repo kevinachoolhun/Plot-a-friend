@@ -35,7 +35,7 @@ public class SuggestLogger {
 		String message = location;
 		message += "Battery:" + this.getBattery(c);
 		message += "Connectivity:" + this.getConnectivity(c);
-		message += "Date:" + now.getTime();
+		message += "Date:" + now.getTime()+";";
 		
 		Log.v("SuggestLog", message);
 		
