@@ -38,7 +38,7 @@ public class SuggestLogger {
 		String message = location;
 		message += " Battery:" + this.getBattery(c);
 		message += " Connectivity:" + this.getConnectivity(c);
-		message += " Date:" + now.toLocaleString() + ";";
+		message += " Date:" + now.toLocaleString() + ";\r\n";
 
 		Log.v("SuggestLog", message);
 		writeToFile(message, c);
