@@ -2,6 +2,9 @@ package plotAFriend.PlotAFriendSaver.Model.Logging;
 
 import java.util.Date;
 
+import plotAFriend.PlotAFriendSaver.Model.Services.SuggestBatteryReader;
+
+import android.content.Context;
 import android.util.Log;
 
 public class SuggestLogger {
@@ -16,17 +19,19 @@ public class SuggestLogger {
 		return instance;
 	}
 
-	private int getBattery() {
-		return 10;
+	private int getBattery(Context c) {
+		return SuggestBatteryReader.getInstance().getBatteryLevel(c);
 	}
 
-	public void l(String tag) {
+	public void l(String location, Context c) {
+		//tag = "SuggestLogs"
 		Date now = new Date();
 		
-		String message = "Battery:" + this.getBattery();
+		String message = location;
+		message += "Battery:" + this.getBattery(c);
 		message += "Date:" + now.getTime();
 		
-		Log.v(tag, message);
+		Log.v("SuggestLog", message);
 		
 	}
 

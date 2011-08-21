@@ -36,17 +36,7 @@ public class GoogleWeatherService {
          BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
          streamFromWS = bufHttpEntity.getContent();
         
-		/*BufferedInputStream bufferStream = new BufferedInputStream(
-				streamFromWS);
-
-		ByteArrayBuffer baf = new ByteArrayBuffer(50);
-		int current = 0;
-		while ((current = bufferStream.read()) != -1) {
-			baf.append((byte) current);
-		}
-
-		/* Convert the Bytes read to a String. */
-		/*str = new String(baf.toByteArray());*/
+		
 		} 
 		catch(Exception ex)
 		{

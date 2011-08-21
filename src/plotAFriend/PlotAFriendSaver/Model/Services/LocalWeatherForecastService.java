@@ -1,10 +1,13 @@
 package plotAFriend.PlotAFriendSaver.Model.Services;
 
+import java.io.InputStream;
+
 import plotAFriend.PlotAFriendSaver.R;
 import plotAFriend.PlotAFriendSaver.Business.GoogleWeatherService;
 import plotAFriend.PlotAFriendSaver.Business.JSONXMLParser;
 import plotAFriend.PlotAFriendSaver.Model.Inference.RequestFactory;
 import plotAFriend.PlotAFriendSaver.Model.Inference.RequestMaker;
+import plotAFriend.PlotAFriendSaver.Model.Logging.SuggestLogger;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
@@ -15,7 +18,7 @@ public class LocalWeatherForecastService implements WeatherForecastService {
 		
 		RequestFactory request = RequestMaker.getRequest(context, "weather");
 		WeatherForecastService service =  request.getWeatherService();
-		WeatherResult result = service.getWeatherResult(postcode);
+		WeatherResult result = service.getWeatherResult(postcode, null);
 
 		if (result != null) {
 			if (result.condition != null) {
@@ -90,11 +93,18 @@ public class LocalWeatherForecastService implements WeatherForecastService {
 
 	}
 	
-	public WeatherResult getWeatherResult(String postcode)
+	public WeatherResult getWeatherResult(String postcode, Context c)
 	{
+		SuggestLogger.getLogger().l("Before: Calling Google Weather - " + postcode, c);
+		InputStream weatherStream = GoogleWeatherService
+		.CallGoogleWeather(postcode);
+		SuggestLogger.getLogger().l("After: Calling Google Weather - " + postcode, c);
+		
+		SuggestLogger.getLogger().l("Before: Parsing Google Weather - " + postcode, c);
 		WeatherResult result = JSONXMLParser
-		.ParseGoogleWeatherXML(GoogleWeatherService
-				.CallGoogleWeather(postcode));
+		.ParseGoogleWeatherXML(weatherStream		
+				);
+		SuggestLogger.getLogger().l("After: Parsing Google Weather - " + postcode, c);
 		
 		return result;
 	}

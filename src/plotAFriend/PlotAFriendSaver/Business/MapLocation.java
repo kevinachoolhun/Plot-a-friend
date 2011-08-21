@@ -111,7 +111,7 @@ public class MapLocation<ref> extends MapActivity implements LocationListener {
 				RequestFactory request = RequestMaker.getRequest(this, "Location");
 
 				PlacesFinderService service = request.getPlacesFinderService();
-				LocationResult proposedLocationResult  = service.getPossibleLocations(currentLatitude, currentLongitude);
+				LocationResult proposedLocationResult  = service.getPossibleLocations(this, currentLatitude, currentLongitude);
 
 				if (proposedLocationResult.getStatus() != null
 						&& proposedLocationResult.getStatus() == PlacesStatus.OK) {
