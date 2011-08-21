@@ -102,7 +102,7 @@ public class PlotAFriendSaver extends ListActivity {
     private void displayConnectivity() {
 		// TODO Auto-generated method stub
 		//Intent i = new Intent(this, ConnectivityMonitor.class);
-		startActivity(i);
+		//startActivity(i);
 	}
     
     
