@@ -54,6 +54,8 @@ public class SuggestLogger {
 				Toast.makeText(c, "CANNOT WRITE TO SDCARD", 5000);
 				
 			}
+			else
+			{
 			
 			File directoryPath = new File(
 					Environment.getExternalStorageDirectory(), "/Android/data/plotAFriend.PlotAFriendSaver/files/");
@@ -78,12 +80,14 @@ public class SuggestLogger {
 			writer.close();
 		
 		} 
+		}
 		catch (IOException e) 
 		{
 			Toast.makeText(c, "FILE NOT WRITTEN!! ", 5000);
 		}
 
-		}
+		
+	}
 
 }
 	
