@@ -48,7 +48,7 @@ public class Agent {
 
 		// compare context with rules for the passed service
 		//if (rule.getBattery() > this.getBattery(c)) {
-			useLocal = true;
+			useLocal = false;
 		//}
 		
 		/*if (rule.getConnection() > this.getConnectivity(c)) {

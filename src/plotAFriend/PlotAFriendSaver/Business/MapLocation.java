@@ -155,7 +155,7 @@ public class MapLocation extends MapActivity implements LocationListener {
 						mapOverlays.add(androidOverlay);
 
 						/* Below will draw weather markers */
-						DrawWeatherMarkup();
+						//DrawWeatherMarkup();
 
 						mapController.animateTo(currentPoint);
 						mapView.invalidate();
@@ -227,10 +227,23 @@ public class MapLocation extends MapActivity implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
-
-		Toast.makeText(this, "Lat: "+ location.getLatitude() + "Long: " + location.getLongitude(), 1000);
-		DisplayProposedLocations(location);
 		locationManager.removeUpdates(this);
+		//Toast.makeText(this, "Lat: "+ location.getLatitude() + "Long: " + location.getLongitude(), 1000);
+		
+		for(int i = 0; i< 40; i++)
+		{
+			
+			SuggestLogger.getLogger().l("####################TEST "+i+" STARTS #################### ", this);
+			DisplayProposedLocations(location);
+			SuggestLogger.getLogger().l("####################TEST "+i+" ENDS #################### ", this);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 }

@@ -40,9 +40,9 @@ private static SuggestBatteryReader instance = null;
 		double scale = batteryIntent.getIntExtra("scale", -1);
 		double level = -1;
 		if (rawlevel >= 0 && scale > 0) {
-		    level = rawlevel / scale;
+		    level = rawlevel*100 / scale;
 		}
-		return rawlevel;
+		return level;
 	
 	}
 	
