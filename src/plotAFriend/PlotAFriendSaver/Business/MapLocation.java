@@ -77,7 +77,7 @@ public class MapLocation extends MapActivity implements LocationListener {
 				R.drawable.androidmarker);
 		androidOverlay = new AndroidOverlayItems(drawableAndroid);
 
-		drawableLocation = this.getResources().getDrawable(R.drawable.location);
+		drawableLocation = this.getResources().getDrawable(R.drawable.pin_blue);
 		locationOverlay = new LocationOverlayItems(drawableLocation);
 
 		coder = new Geocoder(this);
@@ -155,7 +155,7 @@ public class MapLocation extends MapActivity implements LocationListener {
 						mapOverlays.add(androidOverlay);
 
 						/* Below will draw weather markers */
-						//DrawWeatherMarkup();
+						DrawWeatherMarkup();
 
 						mapController.animateTo(currentPoint);
 						mapView.invalidate();
@@ -229,21 +229,10 @@ public class MapLocation extends MapActivity implements LocationListener {
 	public void onLocationChanged(Location location) {
 		locationManager.removeUpdates(this);
 		//Toast.makeText(this, "Lat: "+ location.getLatitude() + "Long: " + location.getLongitude(), 1000);
-		
-		for(int i = 0; i< 40; i++)
-		{
-			
-			SuggestLogger.getLogger().l("####################TEST "+i+" STARTS #################### ", this);
+			SuggestLogger.getLogger().l("####################TEST  STARTS #################### ", this);
 			DisplayProposedLocations(location);
-			SuggestLogger.getLogger().l("####################TEST "+i+" ENDS #################### ", this);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
+			SuggestLogger.getLogger().l("####################TEST  ENDS #################### ", this);
+			
 	}
 
 }
