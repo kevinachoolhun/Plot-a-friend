@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rules>
 	<rule>
-		<service>weather</service>
-		<connection>70</connection>
-		<battery>20</battery>
+		<service>Restaurant</service>
+		<batteryUsage>
+			<local>
+				<wifi>
+					<energy>0.02800</energy>
+					<response>5.71</response>
+				</wifi>
+				<mobile>
+					<energy>0.04170</energy>
+					<response>6.25</response>
+				</mobile>
+			</local>
+			<cloud>
+				<wifi>
+					<energy>0.02678</energy>
+					<response>3.91</response>
+				</wifi>
+				<mobile>
+					<energy>0.2387</energy>
+					<response>17.0</response>
+				</mobile>
+			</cloud>
+		</batteryUsage>
 	</rule>
 	<rule>
-		<service>location</service>
-		<connection>50</connection>
-		<battery>10</battery>
+		<service>Weather</service>
+		<batteryUsage>
+			<local>
+				<wifi>
+					<energy>0.01710</energy>
+					<response>4.79</response>
+				</wifi>
+				<mobile>
+					<energy>0.03073</energy>
+					<response>4.05</response>
+				</mobile>
+			</local>
+			<cloud>
+				<wifi>
+					<energy>0.01063</energy>
+					<response>3.87</response>
+				</wifi>
+				<mobile>
+					<energy>0.0291</energy>
+					<response>9.45</response>
+				</mobile>
+			</cloud>
+		</batteryUsage>
 	</rule>
+	<saveBattery>true</saveBattery>
+	<quickResponse>false</quickResponse>
 </rules>

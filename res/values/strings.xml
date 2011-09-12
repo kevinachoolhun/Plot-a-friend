@@ -2,7 +2,7 @@
 <resources>
     <string name="btnBatteryLevel">Check Battery Level</string>
 	<string name="hello">Hello, Please enter detais of you friend!</string>
-	<string name="app_name">PlotAFriend</string>
+	<string name="app_name">Suggest</string>
 	<string name="no_friends">No Friends Yet!</string>
 	<string name="menu_insert">Add Friend</string>
 	<string name="menu_delete">Delete Friend</string>
@@ -13,5 +13,5 @@
     <string name="callWS">Call Web Service</string>
     <string name="connectivity">Check Connectivity</string>
     <string name="btnGoogleMapText">Show Maps</string>
-
+	<string name="suggestRestaurants">Suggest!</string>
 </resources>
