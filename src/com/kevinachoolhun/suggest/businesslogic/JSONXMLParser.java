@@ -15,10 +15,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.kevinachoolhun.suggest.businesslogic.services.LocationResult;
-import com.kevinachoolhun.suggest.businesslogic.services.WeatherResult;
 import com.kevinachoolhun.suggest.businesslogic.utilities.Utilities;
 import com.kevinachoolhun.suggest.entity.Location;
+import com.kevinachoolhun.suggest.entity.LocationResult;
+import com.kevinachoolhun.suggest.entity.WeatherResult;
 
 
 public class JSONXMLParser {

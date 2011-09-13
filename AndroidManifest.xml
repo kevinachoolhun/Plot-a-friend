@@ -5,7 +5,7 @@
       android:versionName="1.0">
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <uses-library android:name="com.google.android.maps" />
-        <activity android:name=".Index"
+        <activity android:name=".presentation.Index"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,10 +18,7 @@
 		<activity android:name=".PAFBatteryManager"></activity>
 		<activity android:name=".ConnectivityMonitor"></activity>
 		<activity android:name=".FriendMap"></activity>
-		<activity android:name= ".MapLocation"></activity>
-
-<!-- 		<activity android:name= ".Business.GPSLocation"></activity> -->
-		
+		<activity android:name= ".presentation.MapLocation"></activity>
 		
     </application>
     <uses-sdk android:minSdkVersion="7" />

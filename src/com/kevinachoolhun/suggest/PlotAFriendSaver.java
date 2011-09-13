@@ -2,6 +2,7 @@ package com.kevinachoolhun.suggest;
 
 
 import com.kevinachoolhun.suggest.R.string;
+import com.kevinachoolhun.suggest.presentation.MapLocation;
 
 import android.app.ListActivity;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.kevinachoolhun.suggest.businesslogic.services;
+package com.kevinachoolhun.suggest.entity;
 
 import java.util.ArrayList;
 
@@ -6,8 +6,6 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import com.kevinachoolhun.suggest.entity.Location;
-import com.kevinachoolhun.suggest.entity.PlacesStatus;
 
 
 @Root(name="locationResult")

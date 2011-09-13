@@ -1,4 +1,4 @@
-package com.kevinachoolhun.suggest.businesslogic.services;
+package com.kevinachoolhun.suggest.entity;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.kevinachoolhun.suggest;
+package com.kevinachoolhun.suggest.presentation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,11 +25,14 @@ import com.kevinachoolhun.algae.contextreader.Logger;
 import com.kevinachoolhun.algae.inference.RequestFactory;
 import com.kevinachoolhun.algae.inference.RequestMaker;
 import com.kevinachoolhun.suggest.R;
+import com.kevinachoolhun.suggest.R.drawable;
+import com.kevinachoolhun.suggest.R.id;
+import com.kevinachoolhun.suggest.R.layout;
 import com.kevinachoolhun.suggest.businesslogic.AndroidOverlayItems;
 import com.kevinachoolhun.suggest.businesslogic.LocationOverlayItems;
 import com.kevinachoolhun.suggest.businesslogic.services.LocalWeatherForecastService;
-import com.kevinachoolhun.suggest.businesslogic.services.LocationResult;
 import com.kevinachoolhun.suggest.businesslogic.services.PlacesFinderService;
+import com.kevinachoolhun.suggest.entity.LocationResult;
 import com.kevinachoolhun.suggest.entity.PlacesStatus;
 
 public class MapLocation extends MapActivity implements LocationListener {
@@ -97,7 +100,8 @@ public class MapLocation extends MapActivity implements LocationListener {
 		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			provider = LocationManager.GPS_PROVIDER;
 		} else {
-			provider = LocationManager.NETWORK_PROVIDER;
+			//provider = LocationManager.NETWORK_PROVIDER;
+			Toast.makeText(this, "GPS not available", 5000);
 
 		}
 

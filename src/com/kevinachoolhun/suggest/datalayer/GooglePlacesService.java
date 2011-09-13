@@ -1,4 +1,4 @@
-package com.kevinachoolhun.suggest.businesslogic;
+package com.kevinachoolhun.suggest.datalayer;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;

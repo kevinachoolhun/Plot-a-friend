@@ -6,8 +6,9 @@ import com.kevinachoolhun.algae.contextreader.Logger;
 import com.kevinachoolhun.algae.inference.RequestFactory;
 import com.kevinachoolhun.algae.inference.RequestMaker;
 import com.kevinachoolhun.suggest.R;
-import com.kevinachoolhun.suggest.businesslogic.GoogleWeatherService;
 import com.kevinachoolhun.suggest.businesslogic.JSONXMLParser;
+import com.kevinachoolhun.suggest.datalayer.GoogleWeatherService;
+import com.kevinachoolhun.suggest.entity.WeatherResult;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

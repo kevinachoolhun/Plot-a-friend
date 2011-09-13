@@ -5,6 +5,7 @@ import org.simpleframework.xml.core.Persister;
 
 import com.kevinachoolhun.algae.contextreader.Logger;
 import com.kevinachoolhun.suggest.businesslogic.utilities.Utilities;
+import com.kevinachoolhun.suggest.entity.LocationResult;
 
 import android.content.Context;
 

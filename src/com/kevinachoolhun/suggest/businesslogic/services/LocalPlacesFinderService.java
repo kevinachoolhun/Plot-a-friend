@@ -1,8 +1,9 @@
 package com.kevinachoolhun.suggest.businesslogic.services;
 
 import com.kevinachoolhun.algae.contextreader.Logger;
-import com.kevinachoolhun.suggest.businesslogic.GooglePlacesService;
 import com.kevinachoolhun.suggest.businesslogic.JSONXMLParser;
+import com.kevinachoolhun.suggest.datalayer.GooglePlacesService;
+import com.kevinachoolhun.suggest.entity.LocationResult;
 
 import android.content.Context;
 
